@@ -1,0 +1,13 @@
+py-uvm:
+    variables:
+        GIT_SUBMODULE_STRATEGY: recursive
+    script:
+      - source /tools/setup.sh
+      - export COCOTB=$PWD/cocotb
+      - cd ecc/tests
+      - make SIM=vcs
+      - python3 /scratch/version-update.py
+    only:
+        - master
+    tags:
+        - shakti-runner

@@ -1,0 +1,6 @@
+[submodule "cocotb"]
+	path = cocotb
+	url = https://github.com/potentialventures/cocotb.git
+[submodule "riscv-core/riscv_model_wrapper/spike/riscv-isa-sim"]
+	path = riscv-core/riscv_model_wrapper/spike/riscv-isa-sim
+	url = https://github.com/riscv/riscv-isa-sim.git
