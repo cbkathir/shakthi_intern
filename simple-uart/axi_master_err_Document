@@ -1,0 +1,40 @@
+test_3.py:	to check the whether the data written in the Baud reg was correct
+		o/p: data read was written correctly
+
+test_4.py:	write burst of one data 'a'
+		data read form TX reg was correct.
+		BRESP was OKAY(no errror)
+		RRESP was OKAY(no errror)
+
+test_5.py:	write burst of three data 'a','b','c'
+	  	data read from the TX reg was in order what we send and it was correct.
+	  	And we where sending BREADY and was checking BRESP for each beat in the write burst.
+	  	and aslo we got slave error in BRESP after 'c' is written.
+	 	and slave error in RRESP after reading 'a'.
+
+teat_6.py:	was written based on the condition given in the spec 
+		"For a write transaction, a single response is signaled for the entire burst, and not for each data transfer within the burst" 
+		write burst of three data 'a','b','c' 
+		data read from the TX reg was in order what we send and it was incorrect only 'c' was read.
+		BRESP was OKAY (no error)
+		
+
+		It seems that the transfer from SIN to SOUT occur only after each beat write response is checked. 
+
+
+observation from vcd file for test5 & test 6:
+
+		"the slave must wait for both WVALID and WREADY to be asserted before asserting BVALID"
+   		"the slave must also wait for WLAST to be asserted before asserting BVALID"
+		not working
+
+		in test5.vcd
+		bvalid is not deasserted even after WVALID and WLAST MADE TO '0'
+
+		BVALID signal is not proper and its going on writing '62'
+
+
+		same errorin test6.vcd
+
+
+
