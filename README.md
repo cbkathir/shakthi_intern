@@ -1,1 +1,1 @@
-# shakthi_intern
+# shakti_intern
